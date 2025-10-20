@@ -32,8 +32,9 @@ jobs:
           echo "Using JAVA_HOME: $JAVA_HOME"
           mvn -B clean verify --file pom.xml -Dmaven.compiler.release=21
 
-      # Atualiza o gráfico de dependências do GitHub
+      # Atualiza o gráfico de dependências do GitHub usando PAT
       - name: Update dependency graph
         uses: advanced-security/maven-dependency-submission-action@v4
         with:
           ignore-maven-wrapper: true
+          token: ${{ secrets.GH_PAT }}
